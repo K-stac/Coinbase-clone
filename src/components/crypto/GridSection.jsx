@@ -1,106 +1,59 @@
-import AdvancedImg from "../assets/Advanced.png";
-import ZeroFees from "../assets/zero_fees_us.png";
-import CB from "../assets/CB_LOLP__1_.png";
+import AdvancedImg from "../../assets/Advanced.png";
+import ZeroFees from "../../assets/zero_fees_us.png";
+import CB from "../../assets/CB_LOLP__1_.png";
 
 const GridSection = () => {
-  return (
-    <div className="py-18 pl-120 pr-140 flex flex-col">
-      {/*First GridSection*/}
-      <div className="mb-30">
-        <div className="flex-row flex gap-8">
-          <img
-            src={AdvancedImg}
-            alt="Advance"
-            loading="eager"
-            height="600"
-            width="600"
-            className="rounded-[45px]"
-          />
-          <div className="flex flex-col mt-20 gap-5">
-            <p className="text-5xl leading-tight font-serif">
-              Powerful tools, designed <br /> for the advanced trader.
-            </p>
-            <p className="text-gray-500">
-              Powerful analytical tools with the safety and security of Coinbase{" "}
-              <br />
-              deliver the ultimate trading experience. Tap into sophisticated{" "}
-              <br />
-              charting capabilities, real-time order books, and deep liquidity{" "}
-              <br />
-              across hundreds of markets.
-            </p>
-            <button
-              type="button"
-              className="bg-black text-white font-black w-fit py-6 px-10 rounded-full"
-            >
-              Start trading
-            </button>
-          </div>
-        </div>
-      </div>
-      {/*Second GridSection*/}
+  const cards = [
+    {
+      title: "Advanced Trader",
+      description: "Get more tools to trade",
+      image: AdvancedImg,
+      link: "/advanced-trade",
+      buttonText: "Get started"
+    },
+    {
+      title: "Zero Fees",
+      description: "Trade with no fees on Coinbase One",
+      image: ZeroFees,
+      link: "/coinbase-one",
+      buttonText: "Learn more"
+    },
+    {
+      title: "Coinbase Card",
+      description: "Spend crypto and earn rewards",
+      image: CB,
+      link: "/card",
+      buttonText: "Apply now"
+    }
+  ];
 
-      <div className="w-fit gap-45 flex flex-row mb-30">
-        <div className="gap-3 flex flex-col justify-center">
-          <p className="py-2 px-5 border rounded-2xl text-gray-500 border-gray-500 w-50">
-            <span className="mr-5">C</span>COINBASE ONE
-          </p>
-          <p className="text-5xl leading-tight font-serif">
-            Zero trading fees, <br /> more rewards.
-          </p>
-          <p>
-            Get more out of crypto with one membership: zero trading fees,{" "}
-            <br />
-            boosted rewards, priority support, and more.
-          </p>
-          <button
-            type="button"
-            className="bg-black text-white font-black w-fit py-6 px-10 rounded-full"
-          >
-            Claim free trial
-          </button>
-        </div>
-        <div className=" bg-gray-200 rounded-[45px] w-130 h-120 flex ">
-          <img
-            src={ZeroFees}
-            alt="Zero Fees"
-            loading="eager"
-            width="520"
-            height="480"
-            className="rounded-[45px]"
-          />{" "}
-        </div>
-      </div>
-      {/*Third Section*/}
-      <div className="w-fit gap-45 flex flex-row mb-30">
-        <div className=" bg-gray-200 rounded-[45px] w-130 h-120 flex ">
-          <img
-            src={CB}
-            alt="Zero Fees"
-            loading="eager"
-            width="680"
-            height="450"
-            className="rounded-[45px]"
-          />{" "}
-        </div>
-        <div className="gap-3 flex flex-col justify-center">
-          <p className="py-2 px-5 border rounded-2xl text-gray-500 border-gray-500 w-50">
-            <span className="mr-5">C</span>BASE APP
-          </p>
-          <p className="text-5xl leading-tight font-serif">
-            Countless ways to earn <br /> crypto with the Base App.
-          </p>
-          <p>
-            An everything app to trade, create, discover, and chat, all in one{" "}
-            <br />
-            place.
-          </p>
-          <button
-            type="button"
-            className="bg-black text-white font-black w-fit py-6 px-10 rounded-full"
-          >
-            Learn more
-          </button>
+  return (
+    <div className="bg-white py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map((card, index) => (
+            <div key={index} className="flex flex-col items-start">
+              <div className="w-full overflow-hidden rounded-2xl bg-gray-100 aspect-[16/9]">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+              <h3 className="mt-6 text-2xl font-bold leading-8 tracking-tight text-gray-900">
+                {card.title}
+              </h3>
+              <p className="mt-2 text-base leading-7 text-gray-600">
+                {card.description}
+              </p>
+              <a
+                href={card.link}
+                className="mt-4 text-sm font-semibold leading-6 text-blue-600 hover:text-blue-500"
+              >
+                {card.buttonText} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </div>

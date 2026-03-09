@@ -1,39 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface Crypto {
-  id: string;
-  name: string;
-  symbol: string;
-  image: string;
-  current_price: number;
-  price_change_percentage_24h: number;
-}
-
-interface CoinGeckoMarket {
-  id: string;
-  name: string;
-  symbol: string;
-  image: string;
-  current_price: number;
-  price_change_percentage_24h: number | null;
-}
-
-interface TrendingItem {
-  item: {
-    id: string;
-    name: string;
-    symbol: string;
-    large: string;
-    price_btc: number;
-  };
-}
-
 const CryptoTickerSection = () => {
   const [activeTab, setActiveTab] = useState("tradable");
-  const [cryptos, setCryptos] = useState<Crypto[]>([]);
+  const [cryptos, setCryptos] = useState([]); // Removed <Crypto[]>
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null); // Removed <string | null>
 
   useEffect(() => {
     const fetchCryptos = async () => {
@@ -57,31 +29,27 @@ const CryptoTickerSection = () => {
         const response = await axios.get(url);
 
         if (activeTab === "gainers") {
-          const sorted = (response.data as CoinGeckoMarket[])
-            .filter(
-              (c: CoinGeckoMarket) => c.price_change_percentage_24h != null,
-            )
+          const sorted = response.data // Removed "as CoinGeckoMarket[]"
+            .filter((c) => c.price_change_percentage_24h != null)
             .sort(
-              (a: CoinGeckoMarket, b: CoinGeckoMarket) =>
+              (a, b) =>
                 (b.price_change_percentage_24h || 0) -
-                (a.price_change_percentage_24h || 0),
+                (a.price_change_percentage_24h || 0)
             )
-            .slice(0, 6) as Crypto[];
+            .slice(0, 6);
           setCryptos(sorted);
         } else if (activeTab === "new") {
-          const transformed = (response.data.coins as TrendingItem[])
-            .slice(0, 6)
-            .map((item: TrendingItem) => ({
-              id: item.item.id,
-              name: item.item.name,
-              symbol: item.item.symbol,
-              image: item.item.large,
-              current_price: item.item.price_btc,
-              price_change_percentage_24h: 0,
-            }));
+          const transformed = response.data.coins.slice(0, 6).map((item) => ({
+            id: item.item.id,
+            name: item.item.name,
+            symbol: item.item.symbol,
+            image: item.item.large,
+            current_price: item.item.price_btc,
+            price_change_percentage_24h: 0,
+          }));
           setCryptos(transformed);
         } else {
-          setCryptos(response.data as Crypto[]);
+          setCryptos(response.data);
         }
       } catch (err) {
         console.error("Error fetching cryptos:", err);
@@ -97,9 +65,7 @@ const CryptoTickerSection = () => {
   return (
     <div className="w-full bg-gray-50 py-8 sm:py-10 md:py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10">
-        {/* Main Container - Responsive Flex */}
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 items-start lg:items-center">
-          {/* Left Content Section */}
           <div className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-5 md:gap-6">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold leading-tight">
               Explore crypto like Bitcoin, Ethereum, and Dogecoin.
@@ -118,10 +84,8 @@ const CryptoTickerSection = () => {
             </button>
           </div>
 
-          {/* Right Crypto Card Section */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <div className="w-full max-w-sm md:max-w-md lg:max-w-xl bg-black rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl">
-              {/* Tab Navigation */}
+            <div className="w-full max-sm:max-w-sm md:max-w-md lg:max-w-xl bg-black rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl">
               <div className="flex gap-4 md:gap-6 mb-6 md:mb-8 overflow-x-auto pb-2">
                 {["tradable", "gainers", "new"].map((tab) => (
                   <button
@@ -141,7 +105,6 @@ const CryptoTickerSection = () => {
                 ))}
               </div>
 
-              {/* Crypto List */}
               <div className="space-y-2 md:space-y-3">
                 {loading && (
                   <p className="text-gray-400 text-sm md:text-base text-center py-4">
@@ -184,7 +147,7 @@ const CryptoTickerSection = () => {
                       <div className="text-right shrink-0 ml-2">
                         <p className="text-white font-semibold text-sm sm:text-base">
                           $
-                          {crypto.current_price.toLocaleString(undefined, {
+                          {crypto.current_price?.toLocaleString(undefined, {
                             minimumFractionDigits: 0,
                             maximumFractionDigits: 2,
                           })}
@@ -199,8 +162,8 @@ const CryptoTickerSection = () => {
                           {crypto.price_change_percentage_24h >= 0
                             ? "📈"
                             : "📉"}{" "}
-                          {Math.abs(crypto.price_change_percentage_24h).toFixed(
-                            2,
+                          {Math.abs(crypto.price_change_percentage_24h || 0).toFixed(
+                            2
                           )}
                           %
                         </p>

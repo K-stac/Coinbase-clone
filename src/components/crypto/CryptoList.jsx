@@ -1,10 +1,7 @@
 import { useCryptos } from "../hooks/useCrypto";
 
-interface CryptoListProps {
-  type: "tradable" | "gainers" | "new";
-}
 
-export default function CryptoList({ type }: CryptoListProps) {
+export default function CryptoList({ type }) { // 2. Removed ": CryptoListProps"
   const { cryptos, loading, error } = useCryptos(type);
 
   if (loading) return <div className="text-gray-400 py-8">Loading...</div>;

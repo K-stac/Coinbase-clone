@@ -1,15 +1,16 @@
 import { useState } from "react";
 import CryptoList from "./CryptoList";
 
-type TabType = "tradable" | "gainers" | "new";
+// 1. Removed: type TabType = "tradable" | "gainers" | "new";
 
 const CryptoTrackerNavSection = () => {
-  const [activeTab, setActiveTab] = useState<TabType>("tradable");
+  // 2. Removed: <TabType>
+  const [activeTab, setActiveTab] = useState("tradable");
 
   const tabs = [
-    { id: "tradable" as TabType, name: "Tradable" },
-    { id: "gainers" as TabType, name: "Top gainers" },
-    { id: "new" as TabType, name: "New on Coinbase" },
+    { id: "tradable", name: "Tradable" }, // 3. Removed: as TabType
+    { id: "gainers", name: "Top gainers" },
+    { id: "new", name: "New on Coinbase" },
   ];
 
   return (
@@ -20,7 +21,7 @@ const CryptoTrackerNavSection = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`font-bold text-white ${
+            className={`font-bold ${
               activeTab === tab.id
                 ? "text-white"
                 : "text-gray-400 hover:text-white"
