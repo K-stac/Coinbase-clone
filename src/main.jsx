@@ -4,9 +4,11 @@ import { BrowserRouter } from "react-router-dom"; // Add this
 import App from "./App.jsx";
 import "./index.css";
 
+const baseName = import.meta.env.MODE === 'production' ? '/' : '/Coinbase-clone';
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter basename="/Coinbase-clone">
+    <BrowserRouter basename={baseName}>
       <App />
     </BrowserRouter>
   </StrictMode>
