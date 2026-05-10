@@ -1,4 +1,5 @@
 import HeroImage from "../../assets/Hero__4_.png";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -43,12 +44,12 @@ const HeroSection = () => {
                 placeholder="satoshi@nakamoto.com"
                 className="flex-1 border border-gray-300 rounded-xl px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              <button
-                type="button"
-                className="bg-blue-600 text-white rounded-full py-2.5 sm:py-3 px-5 sm:px-6 font-bold text-sm sm:text-base whitespace-nowrap hover:bg-blue-700 transition-colors shadow-md"
+              <Link
+                to="/signup"
+                className="bg-blue-600 text-white rounded-full py-2.5 sm:py-3 px-5 sm:px-6 font-bold text-sm sm:text-base whitespace-nowrap hover:bg-blue-700 transition-colors shadow-md text-center"
               >
                 Sign Up
-              </button>
+              </Link>
             </div>
           </div>
         </div>
