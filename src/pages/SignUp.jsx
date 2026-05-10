@@ -16,20 +16,22 @@ export default function SignUp() {
     <div className="min-h-screen bg-white flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <svg
-            width="44"
-            height="44"
-            viewBox="0 0 40 40"
-            fill="none"
-            className="mx-auto mb-4"
-          >
-            <title>Coinbase Logo</title>
-            <circle cx="20" cy="20" r="20" fill="#0052FF" />
-            <path
-              d="M20 6C12.268 6 6 12.268 6 20s6.268 14 14 14 14-6.268 14-14S27.732 6 20 6zm-3.6 16.8a3.6 3.6 0 110-7.2h7.2a3.6 3.6 0 110 7.2h-7.2z"
-              fill="white"
-            />
-          </svg>
+          <Link to="/">
+            <svg
+              width="44"
+              height="44"
+              viewBox="0 0 40 40"
+              fill="none"
+              className="mx-auto mb-4"
+            >
+              <title>Coinbase Logo</title>
+              <circle cx="20" cy="20" r="20" fill="#0052FF" />
+              <path
+                d="M20 6C12.268 6 6 12.268 6 20s6.268 14 14 14 14-6.268 14-14S27.732 6 20 6zm-3.6 16.8a3.6 3.6 0 110-7.2h7.2a3.6 3.6 0 110 7.2h-7.2z"
+                fill="white"
+              />
+            </svg>
+          </Link>
           <h1 className="text-2xl sm:text-3xl font-extrabold">
             Create account
           </h1>
@@ -48,7 +50,7 @@ export default function SignUp() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
               placeholder="you@example.com"
               required
             />
@@ -66,7 +68,7 @@ export default function SignUp() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
               placeholder="Enter password"
               required
             />
@@ -84,7 +86,7 @@ export default function SignUp() {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
               placeholder="Confirm password"
               required
             />

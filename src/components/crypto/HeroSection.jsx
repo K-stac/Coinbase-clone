@@ -41,7 +41,7 @@ const HeroSection = () => {
               <input
                 type="email"
                 placeholder="satoshi@nakamoto.com"
-                className="flex-1 border border-gray-300 rounded-xl px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-base font-medium placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 border border-gray-300 rounded-xl px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
               <button
                 type="button"

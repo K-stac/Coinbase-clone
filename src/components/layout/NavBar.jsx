@@ -423,6 +423,18 @@ const NavBar = () => {
         />
       )}
 
+      {(activeItem === 'search' || activeItem === 'language') && (
+        <button
+          type="button"
+          onClick={() => setActiveItem(null)}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setActiveItem(null);
+          }}
+          className="fixed left-0 right-0 top-16 md:top-20 bottom-0 z-40 backdrop-blur-sm bg-black/20 cursor-default"
+          aria-label="Close dropdown"
+        />
+      )}
+
       {activeComponent && (
         <nav
           aria-label="Dropdown menu"
@@ -434,6 +446,34 @@ const NavBar = () => {
         >
           {activeComponent}
         </nav>
+      )}
+
+      {activeItem === 'search' && (
+        <div className="fixed left-0 right-0 top-16 md:top-20 z-50 bg-white border-b border-gray-200 p-4">
+          <div className="max-w-md mx-auto">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              autoFocus
+            />
+          </div>
+        </div>
+      )}
+
+      {activeItem === 'language' && (
+        <div className="fixed left-0 right-0 top-16 md:top-20 z-50 bg-white border-b border-gray-200 p-4">
+          <div className="max-w-md mx-auto">
+            <h3 className="text-lg font-semibold mb-4">Select Language</h3>
+            <ul className="space-y-2">
+              <li><button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded">English</button></li>
+              <li><button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded">Español</button></li>
+              <li><button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded">Français</button></li>
+              <li><button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded">Deutsch</button></li>
+              <li><button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded">日本語</button></li>
+            </ul>
+          </div>
+        </div>
       )}
 
       {mobileMenuOpen && (
@@ -513,14 +553,16 @@ const NavBar = () => {
               <ArrowLeftIcon className="w-5 h-5" />
             </button>
           ) : (
-            <img
-              src={coinbaseLogo}
-              alt="Coinbase Logo"
-              title="Coinbase Logo"
-              width={40}
-              height={40}
-              className="w-8 h-8 md:w-11 md:h-11"
-            />
+            <Link to="/">
+              <img
+                src={coinbaseLogo}
+                alt="Coinbase Logo"
+                title="Coinbase Logo"
+                width={40}
+                height={40}
+                className="w-8 h-8 md:w-11 md:h-11"
+              />
+            </Link>
           )}
         </div>
 
@@ -543,6 +585,7 @@ const NavBar = () => {
           <button
             type="button"
             className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+            onClick={() => setActiveItem(activeItem === 'search' ? null : 'search')}
             aria-label="Search"
           >
             <MagnifyingGlassIcon className="w-5 h-5 md:w-6 md:h-6" />
@@ -551,6 +594,7 @@ const NavBar = () => {
           <button
             type="button"
             className="hidden sm:block p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
+            onClick={() => setActiveItem(activeItem === 'language' ? null : 'language')}
             aria-label="Language and region"
           >
             <GlobeEuropeAfricaIcon className="w-5 h-5 md:w-6 md:h-6" />

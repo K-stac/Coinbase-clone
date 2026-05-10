@@ -39,19 +39,21 @@ const SignIn = () => {
     <div className="min-h-screen bg-white text-gray-900 flex flex-col">
       {/* Header with logo */}
       <div className="flex items-center justify-start px-6 py-6 border-b border-gray-200">
-        <svg
-          aria-label="Coinbase logo"
-          className="w-8 h-8"
-          role="img"
-          viewBox="0 0 48 48"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>Coinbase logo</title>
-          <path
-            d="M24,36c-6.63,0-12-5.37-12-12s5.37-12,12-12c5.94,0,10.87,4.33,11.82,10h12.09C46.89,9.68,36.58,0,24,0 C10.75,0,0,10.75,0,24s10.75,24,24,24c12.58,0,22.89-9.68,23.91-22H35.82C34.87,31.67,29.94,36,24,36z"
-            fill="#0052FF"
-          />
-        </svg>
+        <Link to="/">
+          <svg
+            aria-label="Coinbase logo"
+            className="w-8 h-8"
+            role="img"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Coinbase logo</title>
+            <path
+              d="M24,36c-6.63,0-12-5.37-12-12s5.37-12,12-12c5.94,0,10.87,4.33,11.82,10h12.09C46.89,9.68,36.58,0,24,0 C10.75,0,0,10.75,0,24s10.75,24,24,24c12.58,0,22.89-9.68,23.91-22H35.82C34.87,31.67,29.94,36,24,36z"
+              fill="#0052FF"
+            />
+          </svg>
+        </Link>
       </div>
 
       {/* Main content */}
@@ -80,7 +82,7 @@ const SignIn = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
                 placeholder="Your email address"
                 disabled={submitting}
               />
@@ -230,9 +232,9 @@ const SignIn = () => {
               </span>
               <Link
                 to="/signup"
-                className="text-blue-600 text-sm font-semibold hover:text-blue-700 transition-colors"
+                className="text-gray-900 text-sm font-semibold hover:text-gray-700 transition-colors"
               >
-                Sign up
+                Create account
               </Link>
             </div>
 
